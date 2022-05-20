@@ -61,8 +61,9 @@ def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the p
         
     
     
-    topBatsman=list(max(zip(playerdata.values(),playerdata.keys())))
-    print(topBatsman[1]+" = "+str(topBatsman[0]))
+ 
+    plt.bar(playerdata.keys(),playerdata.values())
+    plt.show()
 
 def umpireAnalysisChart() : # collecting the data from "umpires.csv" and finding the barchart of umpires on basis of country and no of umpires per country
     umpiresdata=rawdata("umpires.csv")  #importing the file of umpires.csv and converting them into data
@@ -87,7 +88,7 @@ def umpireAnalysisChart() : # collecting the data from "umpires.csv" and finding
         countriesdata[data]=countries.count(data)
         
    
-    print(countriesdata)
+    #print(countriesdata)
     
     plt.bar(countriesdata.keys(), countriesdata.values())
     plt.show()
@@ -110,7 +111,7 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
     dataTeams=dict(zip(teams,nums))
     
     
-    print(dataTeams)
+    #print(dataTeams)
 
     for matches in matchsdata:
         dataYears[matches[1]]=dataYears[matches[1]]+1
