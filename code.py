@@ -30,9 +30,10 @@ def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividin
 
     for team in matchdata :
         data[team[2]]=data[team[2]]+int(team[17])
-        
-    print(data)
-
+    
+    plt.bar(data.keys(),data.values())
+    plt.show()
+    
 def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the player scored topruns for RCB in entire game
     matchdata=rawdata("deliveries.csv")  #importing the file of deliveries.csv and converting them into data
     RCBdata=[]
