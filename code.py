@@ -1,16 +1,15 @@
 import csv
+from optparse import Values
 import matplotlib.pyplot as plt
 
 
 def rawdata(filename): #collecting the .csv files and converting into data
-    file=open(filename)
-    deliveries = csv.reader(file)
-    data = []
-    for row in deliveries:
-            data.append(row)
-            
+    with open(filename,"r") as f :
+        csvReader=csv.DictReader(f)
+        data=list(csvReader)
+        
     return data
-
+              
     
 
 def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividing the total runs of each team
@@ -18,7 +17,7 @@ def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividin
     details=matchdata.pop(0)
     teams=[]
     for team in matchdata :
-        teams.append(team[2])
+        teams.append(team["batting_team"])
     teams=list(set(teams))
     #print(teams)
     teamscores=[0]*len(teams)
@@ -29,7 +28,7 @@ def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividin
     #print(details[17])
 
     for team in matchdata :
-        data[team[2]]=data[team[2]]+int(team[17])
+        data[team["batting_team"]]=data[team["batting_team"]]+int(team["total_runs"])
     
     plt.bar(data.keys(),data.values())
     plt.show()
@@ -40,13 +39,13 @@ def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the p
     
     for team in matchdata :
         
-       if team[2]=="Royal Challengers Bangalore" :
+       if team["batting_team"]=="Royal Challengers Bangalore" :
            
            RCBdata.append(team)
     players=[]   
     for player in RCBdata :
         
-        players.append(player[6])
+        players.append(player["batsman"])
         
     players=list(set(players))
     
@@ -57,7 +56,7 @@ def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the p
     
     
     for runs in RCBdata :
-        playerdata[runs[6]]=playerdata[runs[6]]+int(runs[17])
+        playerdata[runs["batsman"]]=playerdata[runs["batsman"]]+int(runs["total_runs"])
         
     
     
@@ -71,11 +70,12 @@ def umpireAnalysisChart() : # collecting the data from "umpires.csv" and finding
     
     for data in umpiresdata:
         
-        countries.append(data[1].strip())
+        countries.append(data["Nationality"].strip())
         
     uniqueCountries=list(set(countries))
+    
     uniqueCountries.remove("India")
-    uniqueCountries.remove("Nationality")
+    #uniqueCountries.remove("Nationality")
     #print(uniqueCountries)
     
     nums=[0]*len(uniqueCountries)
@@ -98,8 +98,8 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
     years=[]
     teams=[]
     for season in matchsdata :
-        years.append(season[1])
-        teams.append(season[4])
+        years.append(season["season"])
+        teams.append(season["team1"])
     years=sorted(list(set(years)))
     teams=sorted(list(set(teams)))
   
@@ -114,11 +114,11 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
     #print(dataTeams)
 
     for matches in matchsdata:
-        dataYears[matches[1]]=dataYears[matches[1]]+1
-        dataTeams[matches[4]]=dataTeams[matches[4]]+1
+        dataYears[matches["season"]]=dataYears[matches["season"]]+1
+        dataTeams[matches["team1"]]=dataTeams[matches["team1"]]+1
         
-    dataYears.pop("season")
-    dataTeams.pop("team1")
+    # dataYears.pop("season")
+    # dataTeams.pop("team1")
     
         
     
@@ -130,7 +130,165 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
     plt.show()
 
 
+def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL():
+    matchdata=rawdata("matches.csv")  # importing the file of deliveries.csv and converting them into data
+    years=[]
+    
+    for year in matchdata :
+        
+        years.append(year["season"])
+        
+    years=sorted(list(set(years)))
+    
+    #print(years)
+    
+    matches=[0]*len(years)
+    
+    data=dict(zip(years,matches))
+    
+    #print(data)
+    
+    
+    for matches in matchdata :
+        
+        data[matches["season"]]=data[matches["season"]] +1
+        
+    print(data)
+    
+def NumberOfMatchesWonPerTeamPerYearInIPL() :
+    
+    matchdata=rawdata("matches.csv")  # importing the file of deliveries.csv and converting them into data
+    years=[]
+    teams=[]
+    
+    for data in matchdata :
+        
+        years.append(data["season"])
+        teams.append(data["team1"])
+            
+    years=sorted(list(set(years)))
+    teams=list(set(teams))
 
+    
+    
+    #print(teams,years)
+    values=[0]*len(teams)
+    teamsPerYear=dict(zip(teams,values))
+    teamValue=[teamsPerYear]*len(years)
+    totalTeamsPerYear=dict(zip(years,teamValue))
+    
+    #print(totalTeamsPerYear)
+    
+    
+    for data in matchdata :
+        year=data["season"]
+        winner=data["winner"]
+        try :
+            totalTeamsPerYear[year][winner] += 1
+        except:
+            pass 
+    
+    
+    print(totalTeamsPerYear)
+    
+def ExtraRunsConcededPerTeamInTheYear2016() :
+    
+    deliveriesdata=rawdata("deliveries.csv")  # importing the file of deliveries.csv and converting them into data
+    
+    matchdata=rawdata("matches.csv") 
+    teams=[]
+    
+    for data in deliveriesdata :    
+        teams.append(data["batting_team"])
+            
+    
+    teams=list(set(teams))
+
+    values=[0]*len(teams)
+
+    teamsWithRuns=dict(zip(teams,values))
+    
+    id=[]
+    for ids in matchdata :
+        
+        if ids["season"]=="2016" :
+            id.append(ids["id"])
+            
+    #print(id)
+    
+    
+    
+    for data in deliveriesdata :
+        
+        if data["match_id"] in id :
+            teamsWithRuns[data["batting_team"]]=teamsWithRuns[data["batting_team"]]+int(data["extra_runs"])
+            
+    print(teamsWithRuns)
+    
+def Top10EconomicalBowlerInTheYear2015() :
+    deliveriesdata=rawdata("deliveries.csv")  # importing the file of deliveries.csv and converting them into data
+    
+    matchdata=rawdata("matches.csv") 
+   
+    
+    id=[]
+    for ids in matchdata :
+        
+        if ids["season"]=="2015" :
+            id.append(ids["id"])
+            
+    bowlers=[]
+    
+    for data in deliveriesdata :    
+        
+        if data["match_id"] in id :
+            bowlers.append(data["bowler"])
+            
+    
+    bowlers=list(set(bowlers))
+
+    values=[0]*len(bowlers)
+
+    bowlersWithRuns=dict(zip(bowlers,values))
+    bowlersWithOvers=dict(zip(bowlers,values))
+    
+    for data in deliveriesdata :
+        
+        if data["match_id"] in id :
+            bowlersWithRuns[data["bowler"]]=bowlersWithRuns[data["bowler"]]+int(data["total_runs"])
+            bowlersWithOvers[data["bowler"]]=bowlersWithOvers[data["bowler"]] +1
+            
+    #print(bowlersWithOvers,bowlersWithRuns)
+    #print(len(bowlersWithOvers.keys()),len(bowlersWithRuns.keys()))
+
+
+    
+    totalBowlers = list(bowlersWithRuns.keys())
+    
+    totalRunsByBowler= list(bowlersWithRuns.values())
+    totalOversByBowler=list(bowlersWithOvers.values())
+    
+    
+    bowlerEconomyList=[]
+    count=0
+    for bowler in totalBowlers :
+        
+        economy=(totalRunsByBowler[count]/totalOversByBowler[count])*6
+        bowlerDetails=[economy,bowler]
+        bowlerEconomyList.append(bowlerDetails)
+        count=count+1
+        
+    top10EconomyBowlersList=sorted(bowlerEconomyList)[:10]
+    
+    top10EconomyBowlers ={}
+    
+    for bowlers in top10EconomyBowlersList :
+        
+        top10EconomyBowlers[bowlers[-1]]=bowlers[0]
+        
+    print(top10EconomyBowlers)
+        
+    
 
 def main():
     
@@ -139,7 +297,10 @@ def main():
     topBatsmanOfRCB()
     umpireAnalysisChart()
     StackedchartOfMatchesPlayedByTeamAndBySeason()
-
+    NumberOfMatchesPlayedPerYearForAllTheYearsInIPL()
+    NumberOfMatchesWonPerTeamPerYearInIPL()
+    ExtraRunsConcededPerTeamInTheYear2016()
+    Top10EconomicalBowlerInTheYear2015()
 
 
 main()
