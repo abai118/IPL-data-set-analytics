@@ -14,7 +14,7 @@ def rawdata(filename):  # collecting the .csv files and converting into data
 
 def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividing the total runs of each team
     matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/deliveries.csv")  # importing the file of deliveries.csv and converting them into data
-    details=matchdata.pop(0)
+    #details=matchdata.pop(0)
     teams=[]
     for team in matchdata :
         teams.append(team["batting_team"])
@@ -130,8 +130,8 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
     plt.show()
 
 
-def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL():
-    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv")  # importing the file of deliveries.csv and converting them into data
+def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL(path):
+    matchdata=rawdata(path)  # importing the file of deliveries.csv and converting them into data
     years=[]
     
     for year in matchdata :
@@ -154,10 +154,11 @@ def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL():
         data[matches["season"]]=data[matches["season"]] +1
         
     print(data)
+    #return(list(data.values()))   #using for test case
     
-def NumberOfMatchesWonPerTeamPerYearInIPL() :
+def NumberOfMatchesWonPerTeamPerYearInIPL(path) :
     
-    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv")  # importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata(path)  # importing the file of deliveries.csv and converting them into data
     years=[]
     teams=[]
     
@@ -190,6 +191,9 @@ def NumberOfMatchesWonPerTeamPerYearInIPL() :
     
     
     print(totalTeamsPerYear)
+    #return(list(totalTeamsPerYear.values())[0])    #using for test case
+    
+    
     
 def ExtraRunsConcededPerTeamInTheYear2016() :
     
@@ -291,15 +295,16 @@ def Top10EconomicalBowlerInTheYear2015() :
 
 def main():
     
+    matchesPath="/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv"
     
-    totalRunsByEachTeam()
-    topBatsmanOfRCB()
-    umpireAnalysisChart()
-    StackedchartOfMatchesPlayedByTeamAndBySeason()
-    NumberOfMatchesPlayedPerYearForAllTheYearsInIPL()
-    NumberOfMatchesWonPerTeamPerYearInIPL()
-    ExtraRunsConcededPerTeamInTheYear2016()
-    Top10EconomicalBowlerInTheYear2015()
+    # totalRunsByEachTeam()
+    # topBatsmanOfRCB()
+    # umpireAnalysisChart()
+    # StackedchartOfMatchesPlayedByTeamAndBySeason()
+    NumberOfMatchesPlayedPerYearForAllTheYearsInIPL(matchesPath)
+    NumberOfMatchesWonPerTeamPerYearInIPL(matchesPath)
+    # ExtraRunsConcededPerTeamInTheYear2016()
+    # Top10EconomicalBowlerInTheYear2015()
 
 
 main()
