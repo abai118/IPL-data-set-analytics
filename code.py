@@ -3,9 +3,9 @@ from optparse import Values
 import matplotlib.pyplot as plt
 
 
-def rawdata(filename): #collecting the .csv files and converting into data
-    with open(filename,"r") as f :
-        csvReader=csv.DictReader(f)
+def rawdata(filename):  # collecting the .csv files and converting into data
+    with open(filename,"r") as file :
+        csvReader=csv.DictReader(file)
         data=list(csvReader)
         
     return data
@@ -13,7 +13,7 @@ def rawdata(filename): #collecting the .csv files and converting into data
     
 
 def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividing the total runs of each team
-    matchdata=rawdata("deliveries.csv")  # importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/deliveries.csv")  # importing the file of deliveries.csv and converting them into data
     details=matchdata.pop(0)
     teams=[]
     for team in matchdata :
@@ -34,7 +34,7 @@ def totalRunsByEachTeam():#collecting the data from "deliveries.csv" and dividin
     plt.show()
     
 def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the player scored topruns for RCB in entire game
-    matchdata=rawdata("deliveries.csv")  #importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/deliveries.csv")  #importing the file of deliveries.csv and converting them into data
     RCBdata=[]
     
     for team in matchdata :
@@ -65,7 +65,7 @@ def topBatsmanOfRCB() : #collecting data from "deliveries.csv" and finding the p
     plt.show()
 
 def umpireAnalysisChart() : # collecting the data from "umpires.csv" and finding the barchart of umpires on basis of country and no of umpires per country
-    umpiresdata=rawdata("umpires.csv")  #importing the file of umpires.csv and converting them into data
+    umpiresdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/umpires.csv")  #importing the file of umpires.csv and converting them into data
     countries=[]
     
     for data in umpiresdata:
@@ -94,7 +94,7 @@ def umpireAnalysisChart() : # collecting the data from "umpires.csv" and finding
     plt.show()
     
 def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matches.csv" file and finding StackedchartOfMatchesPlayedByTeamAndBySeason
-    matchsdata=rawdata("matches.csv")
+    matchsdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv")
     years=[]
     teams=[]
     for season in matchsdata :
@@ -131,7 +131,7 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(): # collecting data from "matc
 
 
 def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL():
-    matchdata=rawdata("matches.csv")  # importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv")  # importing the file of deliveries.csv and converting them into data
     years=[]
     
     for year in matchdata :
@@ -157,7 +157,7 @@ def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL():
     
 def NumberOfMatchesWonPerTeamPerYearInIPL() :
     
-    matchdata=rawdata("matches.csv")  # importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv")  # importing the file of deliveries.csv and converting them into data
     years=[]
     teams=[]
     
@@ -193,9 +193,9 @@ def NumberOfMatchesWonPerTeamPerYearInIPL() :
     
 def ExtraRunsConcededPerTeamInTheYear2016() :
     
-    deliveriesdata=rawdata("deliveries.csv")  # importing the file of deliveries.csv and converting them into data
+    deliveriesdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/deliveries.csv")  # importing the file of deliveries.csv and converting them into data
     
-    matchdata=rawdata("matches.csv") 
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv") 
     teams=[]
     
     for data in deliveriesdata :    
@@ -226,9 +226,8 @@ def ExtraRunsConcededPerTeamInTheYear2016() :
     print(teamsWithRuns)
     
 def Top10EconomicalBowlerInTheYear2015() :
-    deliveriesdata=rawdata("deliveries.csv")  # importing the file of deliveries.csv and converting them into data
-    
-    matchdata=rawdata("matches.csv") 
+    deliveriesdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/deliveries.csv")  # importing the file of deliveries.csv and converting them into data
+    matchdata=rawdata("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matches.csv") 
    
     
     id=[]
