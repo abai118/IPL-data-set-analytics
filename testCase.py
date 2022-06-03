@@ -12,7 +12,7 @@ class testcode(unittest.TestCase) :
         #return(data.values())
         test1=[1,2,1,3,1,4,3,1,1,2]
         #test2=[1,2,1,3,1,4,3,1,1,0]
-        result=code.NumberOfMatchesPlayedPerYearForAllTheYearsInIPL("/home/akhil118/Desktop/git/IPL  project/IPL-data-set-analytics/matchesTesting.csv")
+        result=code.NumberOfMatchesPlayedPerYearForAllTheYearsInIPL("/home/akhil118/Desktop/git/IPL-data-set-analytics/matchesTesting.csv")
         self.assertEqual(result,test1)
         #self.assertEqual(result,test2)
         
