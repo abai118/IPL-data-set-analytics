@@ -10,9 +10,9 @@ class testcode(unittest.TestCase) :
     
     def test_1st(self):
         
-        #return(list(data.values()))
+        
         test1={'2008': 1, '2009': 2, '2010': 1, '2011': 3, '2012': 1, '2013': 4, '2014': 3, '2015': 1, '2016': 1, '2017': 2}
-        #test2={'2008': 1, '2009': 2, '2010': 1, '2011': 3, '2012': 1, '2013': 3, '2014': 4, '2015': 1, '2016': 1, '2017': 2}
+        #test2={'2008': 1, '2009': 4, '2010': 3, '2011': 3, '2012': 1, '2013': 3, '2014': 4, '2015': 1, '2016': 1, '2017': 2}
         result=code.NumberOfMatchesPlayedPerYearForAllTheYearsInIPL("/home/akhil118/Desktop/git/IPL-data-set-analytics/mock_matches.csv")
         self.assertEqual(result,test1)
         #self.assertEqual(result,test2)
@@ -22,7 +22,6 @@ class testcode(unittest.TestCase) :
         y2=list(test1.values())
         data=[y1,y2]
         X = np.arange(len(x))
-        fig = plt.figure()
         plt.bar(X + 0.00, data[0], color = 'b', width = 0.25)
         plt.bar(X + 0.25, data[1], color = 'g', width = 0.25)
         

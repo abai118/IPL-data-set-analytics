@@ -301,10 +301,10 @@ def main():
     deliveriesPath="/home/akhil118/Desktop/git/IPL-data-set-analytics/deliveries.csv"
     umpairesPath="/home/akhil118/Desktop/git/IPL-data-set-analytics/umpires.csv"
     
-    # totalRunsByEachTeam(deliveriesPath)
-    # topBatsmanOfRCB(deliveriesPath)
-    # umpireAnalysisChart(umpairesPath)
-    # StackedchartOfMatchesPlayedByTeamAndBySeason(matchesPath)
+    totalRunsByEachTeam(deliveriesPath)
+    topBatsmanOfRCB(deliveriesPath)
+    umpireAnalysisChart(umpairesPath)
+    StackedchartOfMatchesPlayedByTeamAndBySeason(matchesPath)
     NumberOfMatchesPlayedPerYearForAllTheYearsInIPL(matchesPath)
     NumberOfMatchesWonPerTeamPerYearInIPL(matchesPath)
     ExtraRunsConcededPerTeamInTheYear2016(deliveriesPath,matchesPath)
