@@ -155,7 +155,7 @@ def NumberOfMatchesPlayedPerYearForAllTheYearsInIPL(matchesCsv):
         data[matches["season"]]=data[matches["season"]] +1
         
     print(data)
-    #return(list(data.values()))   #using for test case
+    #return(data)   #using for test case
     
 def NumberOfMatchesWonPerTeamPerYearInIPL(matchesCsv) :
     
@@ -229,6 +229,7 @@ def ExtraRunsConcededPerTeamInTheYear2016(deliveriesCsv,matchesCsv) :
             teamsWithRuns[data["batting_team"]]=teamsWithRuns[data["batting_team"]]+int(data["extra_runs"])
             
     print(teamsWithRuns)
+    #return teamsWithRuns       #using for test case
     
 def Top10EconomicalBowlerInTheYear2015(deliveriesCsv,matchesCsv) :
     deliveriesdata=rawdata(deliveriesCsv)  # importing the file of deliveries.csv and converting them into data
@@ -292,7 +293,7 @@ def Top10EconomicalBowlerInTheYear2015(deliveriesCsv,matchesCsv) :
         
     print(top10EconomyBowlers)
         
-    
+    #return top10EconomyBowlers     #using for test case
 
 def main():
     
@@ -300,14 +301,17 @@ def main():
     deliveriesPath="/home/akhil118/Desktop/git/IPL-data-set-analytics/deliveries.csv"
     umpairesPath="/home/akhil118/Desktop/git/IPL-data-set-analytics/umpires.csv"
     
-    totalRunsByEachTeam(deliveriesPath)
-    topBatsmanOfRCB(deliveriesPath)
-    umpireAnalysisChart(umpairesPath)
-    StackedchartOfMatchesPlayedByTeamAndBySeason(matchesPath)
+    # totalRunsByEachTeam(deliveriesPath)
+    # topBatsmanOfRCB(deliveriesPath)
+    # umpireAnalysisChart(umpairesPath)
+    # StackedchartOfMatchesPlayedByTeamAndBySeason(matchesPath)
     NumberOfMatchesPlayedPerYearForAllTheYearsInIPL(matchesPath)
     NumberOfMatchesWonPerTeamPerYearInIPL(matchesPath)
     ExtraRunsConcededPerTeamInTheYear2016(deliveriesPath,matchesPath)
     Top10EconomicalBowlerInTheYear2015(deliveriesPath,matchesPath)
 
+
+
+    
 
 main()
