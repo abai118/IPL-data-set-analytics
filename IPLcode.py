@@ -1,6 +1,4 @@
 import csv
-
-
 import matplotlib.pyplot as plt
 
 
@@ -33,7 +31,7 @@ def totalRunsByEachTeam(deliveriesCsv):
     for team in matchdata:
         battingTeam = team["batting_team"]
         teamsDict[battingTeam] = teamsDict[battingTeam]+int(team["total_runs"])
-    plt.bar(teamsDict.keys(), teamsDict.values())
+    plt.barh(list(teamsDict.keys()), list(teamsDict.values()))
     plt.show()
 
 
@@ -65,7 +63,7 @@ def topBatsmanOfRCB(deliveriesCsv):
         batsman = runs["batsman"]
         playerdata[batsman] = playerdata[batsman]+int(runs["total_runs"])
 
-    plt.bar(playerdata.keys(), playerdata.values())
+    plt.barh(list(playerdata.keys()), list(playerdata.values()))
     plt.show()
 
 
@@ -97,7 +95,7 @@ def umpireAnalysisChart(umpairesCsv):
 
     # print(countriesdata)
 
-    plt.bar(countriesdata.keys(), countriesdata.values())
+    plt.barh(list(countriesdata.keys()), list(countriesdata.values()))
     plt.show()
 
 
@@ -129,9 +127,9 @@ def StackedchartOfMatchesPlayedByTeamAndBySeason(matchesCsv):
     # dataYears.pop("season")
     # dataTeams.pop("team1")
 
-    plt.bar(dataYears.keys(), dataYears.values())
+    plt.barh(list(dataYears.keys()), list(dataYears.values()))
     plt.show()
-    plt.bar(dataTeams.keys(), dataTeams.values())
+    plt.barh(list(dataTeams.keys()), list(dataTeams.values()))
     plt.show()
 
 
@@ -162,7 +160,7 @@ def NoOfMatchesPlayedPerYear(matchesCsv):
         data[matches["season"]] = data[matches["season"]] + 1
 
     print(data)
-    # return(data)   #using for test case
+    # return(data)   # using for test case
 
 
 def NumberOfMatchesWonPerTeamPerYearInIPL(matchesCsv):
@@ -200,7 +198,7 @@ def NumberOfMatchesWonPerTeamPerYearInIPL(matchesCsv):
             pass
 
     print(totalTeamsPerYear)
-    # return(list(totalTeamsPerYear.values())[0])    #using for test case
+    # return(list(totalTeamsPerYear.values())[0])    # using for test case
 
 
 def ExtraRunsPerTeamIn2016(deliveriesCsv, matchesCsv):
@@ -236,7 +234,7 @@ def ExtraRunsPerTeamIn2016(deliveriesCsv, matchesCsv):
             teamsWithRuns[data["batting_team"]] += int(data["extra_runs"])
 
     print(teamsWithRuns)
-    # return teamsWithRuns       #using for test case
+    # return teamsWithRuns       # using for test case
 
 
 def Top10EconomicalBowlerIn2015(deliveriesCsv, matchesCsv):
@@ -300,14 +298,14 @@ def Top10EconomicalBowlerIn2015(deliveriesCsv, matchesCsv):
 
     print(top10EconomyBowlers)
 
-    # return top10EconomyBowlers     #using for test case
+    # return top10EconomyBowlers     # using for test case
 
 
 def main():
 
-    matchesPath = "/home/akhil118/Desktop/git/IPL /matches.csv"
-    deliveriesPath = "/home/akhil118/Desktop/git/IPL /deliveries.csv"
-    umpairesPath = "/home/akhil118/Desktop/git/IPL /umpires.csv"
+    matchesPath = "/home/akhil118/Desktop/git/IPL/matches.csv"
+    deliveriesPath = "/home/akhil118/Desktop/git/IPL/deliveries.csv"
+    umpairesPath = "/home/akhil118/Desktop/git/IPL/umpires.csv"
 
     totalRunsByEachTeam(deliveriesPath)
     topBatsmanOfRCB(deliveriesPath)
